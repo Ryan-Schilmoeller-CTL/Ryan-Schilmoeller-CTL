@@ -1,0 +1,1257 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "iPerf Server, Client and Reporting Measurement and Collection API",
+    "version" : "1.1",
+    "title" : "iPerf API"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/CenturyLink_APIs/i-perf_api/1.1",
+  "schemes" : [ "https", "http" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/iperf_server" : {
+      "get" : {
+        "tags" : [ "iperf_server" ],
+        "summary" : "Retrieve list of all iPerf servers.",
+        "description" : "Retrieve list of all iPerf servers.",
+        "operationId" : "getalliperfservers",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-List of iPerf server {uuid}s",
+            "examples" : {
+              "uuid" : 1100
+            },
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/uuid"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "iperf_server" ],
+        "summary" : "Create an iPerf server.",
+        "description" : "Create and Activate an iPerf server.",
+        "operationId" : "createiperfserver",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "iperfserver",
+          "description" : "iPerf Server",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/iperf_server"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-iPerf server created.",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_server"
+            }
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      }
+    },
+    "/iperf_server/{uuid}" : {
+      "get" : {
+        "tags" : [ "iperf_server" ],
+        "summary" : "Retrieve iPerf server, given unique {uuid}.",
+        "description" : "Retrieve iPerf server and configuration information.",
+        "operationId" : "getiperfserver",
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "{uuid} of iPerf server",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-Retrieval of iPerf server",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_server"
+            }
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "iperf_server" ],
+        "summary" : "Delete iPerf server with {uuid}}",
+        "description" : "Delete iPerf server given {uuid}",
+        "operationId" : "deleteiperfserver",
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "{uuid} of iPerf_client",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-Deleted iPerf server."
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      }
+    },
+    "/iperf_client" : {
+      "get" : {
+        "tags" : [ "iperf_client" ],
+        "summary" : "Retrieve list of all iPerf clients.",
+        "description" : "Retrieve list of all iPerf clients.",
+        "operationId" : "getalliperfclients",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-List of iPerf client {uuid}s",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/uuid"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "iperf_client" ],
+        "summary" : "Create an iPerf client.",
+        "description" : "Create and Activate an iPerf client.",
+        "operationId" : "createiperfclient",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "iperfclient",
+          "description" : "iPerf Server",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/iperf_client"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-iPerf client created",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_client"
+            }
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      }
+    },
+    "/iperf_client/{uuid}" : {
+      "get" : {
+        "tags" : [ "iperf_client" ],
+        "summary" : "Retrieve iPerf client, given {uuid}",
+        "description" : "Retrieve iPerf client and configuration information",
+        "operationId" : "getiperfclient",
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "{uuid}}of iPerf client",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-Retrieval of iPerf client.",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_client"
+            }
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "iperf_client" ],
+        "summary" : "Delete iPerf client with {uuid}",
+        "description" : "Delete iPerf client given {uuid}",
+        "operationId" : "deleteiperfclient",
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "{uuid} of iPerf_client",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-Deleted iPerf client."
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      }
+    },
+    "/iperf_test_results" : {
+      "get" : {
+        "tags" : [ "iperf_test_results" ],
+        "summary" : "Retrieve list of iPerf test results.",
+        "description" : "Retrieve list of iPerf test results. ",
+        "operationId" : "getalliperftestresults",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-List of iPerf client {uuid}s",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/uuid"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      }
+    },
+    "/iperf_test_results/report/{uuid}" : {
+      "get" : {
+        "tags" : [ "iperf_test_results" ],
+        "summary" : "Retrieve iPerf test results given {uuid}",
+        "description" : "Retrieve iPerf test results given {uuid}",
+        "operationId" : "getiperftestresults",
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "{uuid} of iPerf test results",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-Retrieved iPerf test results",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_test_results"
+            }
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "iperf_test_results" ],
+        "summary" : "Delete iPerf test result given {uuid}",
+        "description" : "Delete iPerf test result given {uuid}",
+        "operationId" : "deleteiperftestresult",
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "{uuid} of iPerf test result",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success-Deleted iPerf test result"
+          },
+          "400" : {
+            "description" : "Error has occurred",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "404" : {
+            "description" : "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "408" : {
+            "description" : "Request Time-out\n\nList of supported error codes:\n- 63: Request time-out",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity\n\nFunctional error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6:  API is over capacity, retry later !",
+            "schema" : {
+              "$ref" : "#/definitions/iperf_Error_Response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "uuid" : {
+      "type" : "object",
+      "properties" : {
+        "uuid" : {
+          "type" : "string",
+          "example" : "100-HG"
+        }
+      },
+      "description" : "Universally Unique Identifier"
+    },
+    "iperf_server" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "uuid" : {
+          "$ref" : "#/definitions/uuid"
+        },
+        "general_options" : {
+          "$ref" : "#/definitions/iperf_general_options"
+        },
+        "server_options" : {
+          "$ref" : "#/definitions/iperf_server_options"
+        }
+      },
+      "description" : "iPerf Server"
+    },
+    "iperf_server_options" : {
+      "type" : "object",
+      "properties" : {
+        "daemon" : {
+          "type" : "boolean",
+          "description" : "Run the server in background as a daemon."
+        },
+        "pidfile" : {
+          "type" : "string",
+          "description" : "Write a file with the process ID, most useful when runnning as a daemon."
+        }
+      },
+      "description" : "iPerf Server"
+    },
+    "iperf_client" : {
+      "type" : "object",
+      "required" : [ "uuid" ],
+      "properties" : {
+        "uuid" : {
+          "$ref" : "#/definitions/uuid"
+        },
+        "general_options" : {
+          "$ref" : "#/definitions/iperf_general_options"
+        },
+        "iperf_client_options" : {
+          "$ref" : "#/definitions/iperf_client_options"
+        }
+      },
+      "description" : "iPerf Client"
+    },
+    "iperf_client_options" : {
+      "type" : "object",
+      "properties" : {
+        "bandwidth" : {
+          "type" : "integer",
+          "example" : 1001,
+          "description" : "Target bandwidth in bits/sec"
+        },
+        "blksize" : {
+          "type" : "integer",
+          "example" : 64000,
+          "description" : "The test blksize"
+        },
+        "duration" : {
+          "type" : "integer",
+          "example" : 1500,
+          "description" : "The test duration in seconds."
+        },
+        "num_streams" : {
+          "type" : "integer",
+          "description" : "The number of streams to use."
+        },
+        "protocol" : {
+          "type" : "array",
+          "description" : "The iperf3 instance protocol. Valid protocols are 'tcp' and 'udp'.",
+          "items" : {
+            "type" : "string",
+            "example" : "udp",
+            "enum" : [ "tcp", "udp" ]
+          }
+        },
+        "reverse" : {
+          "type" : "boolean",
+          "description" : "Toggles direction of test."
+        },
+        "server_hostname" : {
+          "type" : "string",
+          "example" : "lumen.com:8080/pm/iperf",
+          "description" : "The server hostname to connect to Accepts DNS entries or IP addresses."
+        },
+        "zerocopy" : {
+          "type" : "boolean",
+          "description" : "Toogle zerocopy. Use the sendfile() system call for Zero Copy mode.  This uses my less CPU. NOTE: There isn't a hook in the libiperf library for getting the current configured value. Relying on zerocopy.setter function. "
+        }
+      }
+    },
+    "iperf_general_options" : {
+      "type" : "object",
+      "properties" : {
+        "bind_address" : {
+          "type" : "string",
+          "example" : "172.28.1.1",
+          "description" : "The bind address the iperf3 instance will listen on use * to listen on all available IPs: rtype:sting"
+        },
+        "iperf_version" : {
+          "type" : "string",
+          "example" : "v1",
+          "description" : "Version of the libiperf library."
+        },
+        "json_output" : {
+          "type" : "boolean",
+          "description" : "Toggles json output of libiperf. Turning this off will output the iperf3 instance results to stdout/stderr."
+        },
+        "port" : {
+          "type" : "integer",
+          "description" : "The port the iperf3 server is listening on."
+        },
+        "role" : {
+          "type" : "array",
+          "description" : "The iperf3 instance role. Valid roles are 'c'=client and 's'=server.",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "c", "s" ]
+          }
+        },
+        "verbose" : {
+          "type" : "boolean",
+          "description" : "Toggles verbose output for the iperf3 instance."
+        }
+      }
+    },
+    "iperf_Error_Response" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "integer"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "iPerf Error addition information"
+        }
+      }
+    },
+    "iperf_test_results" : {
+      "required" : [ "end", "intervals", "start" ],
+      "properties" : {
+        "start" : {
+          "$ref" : "#/definitions/iperf_test_results_start"
+        },
+        "intervals" : {
+          "$ref" : "#/definitions/intervals"
+        },
+        "end" : {
+          "$ref" : "#/definitions/iperf_test_results_end"
+        }
+      }
+    },
+    "iperf_test_results_start_timestamp" : {
+      "required" : [ "time", "timesecs" ],
+      "properties" : {
+        "time" : {
+          "type" : "string"
+        },
+        "timesecs" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "iperf_test_results_start_connecting_to" : {
+      "required" : [ "host", "port" ],
+      "properties" : {
+        "host" : {
+          "type" : "string"
+        },
+        "port" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "iperf_test_results_start_test_start" : {
+      "required" : [ "blksize", "blocks", "bytes", "duration", "num_streams", "omit", "protocol", "reverse" ],
+      "properties" : {
+        "protocol" : {
+          "type" : "string"
+        },
+        "num_streams" : {
+          "type" : "integer"
+        },
+        "blksize" : {
+          "type" : "integer"
+        },
+        "omit" : {
+          "type" : "integer"
+        },
+        "duration" : {
+          "type" : "integer"
+        },
+        "bytes" : {
+          "type" : "integer"
+        },
+        "blocks" : {
+          "type" : "integer"
+        },
+        "reverse" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "iperf_test_results_start" : {
+      "required" : [ "connected", "connecting_to", "cookie", "system_info", "tcp_mss_default", "test_start", "timestamp", "version" ],
+      "properties" : {
+        "connected" : {
+          "$ref" : "#/definitions/connected"
+        },
+        "version" : {
+          "type" : "string"
+        },
+        "system_info" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "$ref" : "#/definitions/iperf_test_results_start_timestamp"
+        },
+        "connecting_to" : {
+          "$ref" : "#/definitions/iperf_test_results_start_connecting_to"
+        },
+        "cookie" : {
+          "type" : "string"
+        },
+        "tcp_mss_default" : {
+          "type" : "integer"
+        },
+        "test_start" : {
+          "$ref" : "#/definitions/iperf_test_results_start_test_start"
+        }
+      }
+    },
+    "iperf_test_results_end_sum_sent" : {
+      "required" : [ "bits_per_second", "bytes", "end", "retransmits", "seconds", "start" ],
+      "properties" : {
+        "start" : {
+          "type" : "integer"
+        },
+        "end" : {
+          "type" : "number"
+        },
+        "seconds" : {
+          "type" : "number"
+        },
+        "bytes" : {
+          "type" : "integer"
+        },
+        "bits_per_second" : {
+          "type" : "integer"
+        },
+        "retransmits" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "iperf_test_results_end_sum_received" : {
+      "required" : [ "bits_per_second", "bytes", "end", "seconds", "start" ],
+      "properties" : {
+        "start" : {
+          "type" : "integer"
+        },
+        "end" : {
+          "type" : "number"
+        },
+        "seconds" : {
+          "type" : "number"
+        },
+        "bytes" : {
+          "type" : "integer"
+        },
+        "bits_per_second" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "iperf_test_results_end_cpu_utilization_percent" : {
+      "required" : [ "host_system", "host_total", "host_user", "remote_system", "remote_total", "remote_user" ],
+      "properties" : {
+        "host_total" : {
+          "type" : "number"
+        },
+        "host_user" : {
+          "type" : "number"
+        },
+        "host_system" : {
+          "type" : "number"
+        },
+        "remote_total" : {
+          "type" : "number"
+        },
+        "remote_user" : {
+          "type" : "number"
+        },
+        "remote_system" : {
+          "type" : "number"
+        }
+      }
+    },
+    "iperf_test_results_end" : {
+      "required" : [ "cpu_utilization_percent", "streams", "sum_received", "sum_sent" ],
+      "properties" : {
+        "streams" : {
+          "$ref" : "#/definitions/streams"
+        },
+        "sum_sent" : {
+          "$ref" : "#/definitions/iperf_test_results_end_sum_sent"
+        },
+        "sum_received" : {
+          "$ref" : "#/definitions/iperf_test_results_end_sum_received"
+        },
+        "cpu_utilization_percent" : {
+          "$ref" : "#/definitions/iperf_test_results_end_cpu_utilization_percent"
+        }
+      }
+    },
+    "intervals" : {
+      "required" : [ "streams", "sum" ],
+      "properties" : {
+        "streams" : {
+          "$ref" : "#/definitions/streams"
+        },
+        "sum" : {
+          "$ref" : "#/definitions/sum"
+        }
+      }
+    },
+    "streams" : {
+      "required" : [ "bits_per_second", "bytes", "end", "omitted", "retransmits", "seconds", "snd_cwnd", "socket", "start" ],
+      "properties" : {
+        "socket" : {
+          "type" : "integer"
+        },
+        "start" : {
+          "type" : "number"
+        },
+        "end" : {
+          "type" : "number"
+        },
+        "seconds" : {
+          "type" : "number"
+        },
+        "bytes" : {
+          "type" : "integer"
+        },
+        "bits_per_second" : {
+          "type" : "number"
+        },
+        "retransmits" : {
+          "type" : "integer"
+        },
+        "snd_cwnd" : {
+          "type" : "integer"
+        },
+        "omitted" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "sum" : {
+      "required" : [ "bits_per_second", "bytes", "end", "omitted", "retransmits", "seconds", "start" ],
+      "properties" : {
+        "start" : {
+          "type" : "integer"
+        },
+        "end" : {
+          "type" : "integer"
+        },
+        "seconds" : {
+          "type" : "number"
+        },
+        "bytes" : {
+          "type" : "integer"
+        },
+        "bits_per_second" : {
+          "type" : "number"
+        },
+        "retransmits" : {
+          "type" : "integer"
+        },
+        "omitted" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "connected" : {
+      "required" : [ "local_host", "local_port", "remote_host", "remote_port", "socket" ],
+      "properties" : {
+        "socket" : {
+          "type" : "integer"
+        },
+        "local_host" : {
+          "type" : "string"
+        },
+        "local_port" : {
+          "type" : "integer"
+        },
+        "remote_host" : {
+          "type" : "string"
+        },
+        "remote_port" : {
+          "type" : "integer"
+        }
+      }
+    }
+  }
+}
